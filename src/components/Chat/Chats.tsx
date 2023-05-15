@@ -18,7 +18,7 @@ export const Chats = ({token,setToken}:any) =>{
   const [currentChat,setChat] = useState(null);
 
   useEffect(() => {
-    const newSocket = io('http://localhost:3001',{  
+    const newSocket = io(process.env.REACT_APP_API_URL||'',{  
       transports: ['websocket'],      
       auth: {
         authorization: token,

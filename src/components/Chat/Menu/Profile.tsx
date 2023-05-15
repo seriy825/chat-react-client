@@ -15,7 +15,7 @@ export const Profile = ({user,setUser,setToken}:any) => {
   const file = watch('avatar',[]);
   const name = watch('name','');
   const logout = ()=>{
-    localStorage.setItem('user','null');
+    localStorage.removeItem('user');
     setToken(null);
   }
 
