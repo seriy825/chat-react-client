@@ -1,0 +1,220 @@
+.chats{    
+  display:flex; 
+  background-image: url('https://w0.peakpx.com/wallpaper/154/372/HD-wallpaper-telegram-background-whatsapp-creative-android-pattern-texture-abstract.jpg');  
+  &-container{
+    width:80%; 
+    position: relative;      
+    ::-webkit-scrollbar {
+      width: 7px;
+    }    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;       
+    }    
+    ::-webkit-scrollbar-thumb {
+      background: #888;      
+      border-radius: 10px; 
+    }  
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+    }  
+    @media(max-width:926px){
+      width:100%;
+    }
+  } 
+  &-header{
+    font-size: 24px;       
+    background-color:rgb(109, 109, 245);    
+    padding:10px 30px;
+    margin-bottom: 0 !important;    
+    .back-arrow{
+      display:none;
+      @media(max-width:926px){
+        display:inherit;
+        margin-right:15px;
+      }
+    }
+    .level{
+      display:flex;
+      &-left{
+        display:flex;
+        margin-top:0;
+      }      
+      &-right{
+        margin-top:0;
+      }
+      svg:hover{
+        cursor: pointer;
+      }
+    }
+    &_name{
+      margin-left:10px;
+      color:#fff;
+    }
+  }  
+  &-content{
+    height:93vh;
+    overflow-y:auto;
+    .message{
+      display:flex;
+      background-color: inherit;
+      margin:5px 0;
+      &.sender{
+        flex-direction: row-reverse;
+        .content{
+          background-color: rgb(102, 122, 235);
+          padding:5px 20px;          
+          border-radius:25px 25px 0 25px;                      
+          &_text{            
+            color:#fff;
+            font-size:14px;
+          }
+          &_time{
+            padding-left:15px;                 
+            color:#c4d5eb;
+            font-size:12px;            
+          }          
+        }        
+      }
+      &.recepient{
+        flex-direction: row;
+        .content{
+          background-color: rgb(215, 214, 241);
+          padding:5px 20px;
+          border-radius:25px 25px 25px 0;                      
+          &_text{            
+            font-size:14px;
+          }
+          &_time{
+            padding-left:15px;            
+            color:#5c7da8;
+            font-size:12px;
+          }          
+        }        
+      }
+    }    
+  }     
+  &-input{
+    position: absolute;
+    bottom:0;    
+    width:100%;
+    padding:0 10px;
+    .textarea{
+      border-radius: 50px;
+      min-width: 0;
+      word-wrap: break-word;
+      word-break: break-all;
+    }    
+    .button{      
+      border-radius: 20px;
+      &:hover:enabled{
+        .icon{
+          svg{
+            path{
+              color:rgb(32, 94, 209);
+            }            
+          }          
+        }
+      }
+    }
+    .control{      
+      display:flex;
+      align-items: center;      
+    } 
+  }
+  .menu{
+    width:100%;
+    flex-basis: 375px;
+    border-right:1px black solid; 
+    height:100vh;      
+    background-color: rgb(219, 219, 253);       
+    overflow-y: auto;    
+    &::-webkit-scrollbar {
+      width: 7px;
+    }    
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;       
+    }    
+    &::-webkit-scrollbar-thumb {
+      background: #888;      
+      border-radius: 10px; 
+    }  
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+    }  
+    .is-active{
+      span{
+        color:white;
+      }
+    }
+    @media(max-width:926px){
+      width:100%;
+      flex-basis:100%;
+    }    
+  }
+  .avatar{
+    height:45px;
+    width:45px;
+    object-fit: cover;
+    display:flex;
+    font-size:22px;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    border-radius: 50px;  
+    &:hover{      
+      cursor: pointer;
+    }
+  }
+  .centered{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding:10px 0;
+    background-color:rgb(109, 109, 245);    
+  }
+  .chat-item{
+    display:flex;
+    align-items: center;          
+    & .avatar {
+      margin-right:10px; 
+    }
+    &-content{
+      width:75%;
+      color:black;
+    }
+    &-content_name{
+      display:flex;
+      justify-content: space-between;
+      font-size: 18px;
+    }
+    &-content_message{
+      text-overflow: ellipsis;
+    }
+  }  
+  @media (max-width:926px){
+    &-container{
+      display:none;
+    }
+    .menu{
+      display:none;
+    }
+    & .active{
+      display:block;
+    }
+  }  
+}
+.modal-content{
+  border-radius: 40px;
+  .input{
+    border-radius: 20px;
+  }
+  .file-label,.file-name{
+    border-radius:20px;
+  }
+  .file-name{
+    color:black !important;
+  }
+  .button{
+    border-radius: 20px;
+  }
+}

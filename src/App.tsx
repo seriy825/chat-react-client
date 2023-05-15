@@ -1,26 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.scss';
+import { LoginPage } from './components/Auth/LoginPage';
+import { Chats } from './components/Chat/Chats';
+import { RegisterPage } from './components/Auth/RegisterPage';
+import { Confirmation } from './components/Auth/Confirmation';
+import jwtDecode from 'jwt-decode';
+import { NotConfirmed } from './components/Auth/NotConfirmed';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface UserJWT{
+  emailVerified:boolean;
 }
 
-export default App;
+export const App = () => {  
+
+  const [token,setToken] = useState(localStorage.getItem('user'));
+  const [isRegistered,setRegistered] = useState(true);
+  
+  return (
+    <div className="App">      
+        <Router>
+          <Routes>
+            {              
+              token 
+              ? 
+              <>
+                {
+                  (jwtDecode(token) as UserJWT)?.emailVerified
+                  ?                                   
+                  <Route path='/' key='/' element={<Chats token={token} setToken={setToken}/>}></Route>                  
+                  :
+                  <> 
+                  <Route path='/' key='/' element={<NotConfirmed/>}></Route>                  
+                  </>
+                }                
+                <Route path={'/auth/confirmation/'+token} element={<Confirmation token={token} setToken={setToken}/>}></Route>
+              </>
+              :
+              <>
+                {
+                  isRegistered 
+                  ?
+                  <Route path='/' key='/' element={<LoginPage setRegistered={setRegistered} setToken={setToken}/>}></Route>
+                  :
+                  <Route path='/' key='/' element={<RegisterPage setRegistered={setRegistered} setToken={setToken}/>}></Route>
+                }
+              </>            
+            }          
+          </Routes>
+        </Router>
+    </div>
+  );
+};
